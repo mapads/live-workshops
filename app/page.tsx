@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center">
       <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-bold mb-4">Apply for the Workshop</h2>
+        <h2 className="text-2xl font-bold mb-4">Apply for the Workshop - updated</h2>
         <input
           type="text"
           name="name"
