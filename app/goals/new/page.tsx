@@ -19,7 +19,8 @@ export default function NewGoal() {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:${PORT}/api/goals`, {
+            // const response = await fetch(`http://localhost:${PORT}/api/goals`, {
+            const response = await fetch(`/api/goals`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

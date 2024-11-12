@@ -17,7 +17,8 @@ export default function Goals() {
     useEffect(() => {
         const fetchGoals = async () => {
             try {
-                const response = await fetch(`http://localhost:${PORT}/api/goals`);
+                // const response = await fetch(`http://localhost:${PORT}/api/goals`);
+                const response = await fetch(`/api/goals`);
                 if (!response.ok) throw new Error('Failed to fetch goals');
                 const data: Goal[] = await response.json();
                 setGoals(data);
