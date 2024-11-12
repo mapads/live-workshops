@@ -12,7 +12,7 @@ export default function Goals() {
     const [goals, setGoals] = useState<Goal[]>([]);
     const [isPaused, setIsPaused] = useState(false);
     const [revealedGoals, setRevealedGoals] = useState<{ [key: string]: boolean }>({});
-    const PORT = process.env.PORT || 5002;
+    // const PORT = process.env.PORT || 5002;
 
     useEffect(() => {
         const fetchGoals = async () => {

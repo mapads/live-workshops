@@ -9,7 +9,7 @@ interface FormData {
 
 export default function NewGoal() {
     const [formData, setFormData] = useState<FormData>({ name: '', goal: '' });
-    const PORT = process.env.PORT || 5002;
+    // const PORT = process.env.PORT || 5002;
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
