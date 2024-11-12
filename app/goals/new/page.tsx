@@ -18,21 +18,26 @@ export default function NewGoal() {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:${PORT}/api/goals`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
-        const result = await response.text();
-        alert(result);
+        try {
+            const response = await fetch(`http://localhost:${PORT}/api/goals`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const result = await response.text();
+            alert(result);    
+        } catch (error) {
+            alert('Failed to add goal due to error: ' + error);
+        }
+        
     };
 
     return (
         <div className="min-h-screen bg-base-200 flex items-center justify-center">
             <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
-                <h2 className="text-2xl font-bold mb-4">Add goal</h2>
+                <h2 className="text-2xl font-bold text-gray-600 mb-4">What is your goal from learning in this class?</h2>
                 <input
                     type="text"
                     name="name"

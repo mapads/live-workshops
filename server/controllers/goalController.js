@@ -1,6 +1,8 @@
-import Goals, { find } from '../models/Goals';
+// server/controllers/goalController.js
 
-export async function createGoal(req, res) {
+const Goals = require('../models/Goals');
+
+async function createGoal(req, res) {
     try {
         const goal = new Goals(req.body);
         await goal.save();
@@ -10,12 +12,25 @@ export async function createGoal(req, res) {
     }
 }
 
-export async function getGoals(req, res) {
+async function getGoals(req, res) {
     try {
-        const goals = await find();
-        console.log(`fetching goals ${goals}`);
+        const startOfDay = new Date();
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = new Date();
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const goals = await Goals.find({
+            date: { $gte: startOfDay, $lte: endOfDay }
+        });
+
         res.status(200).send(goals);
     } catch (error) {
         res.status(500).send('Error fetching goals: ' + error.message);
     }
 }
+
+module.exports = {
+    createGoal,
+    getGoals,
+};

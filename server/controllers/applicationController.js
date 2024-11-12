@@ -1,6 +1,6 @@
-import Application from '../models/Application';
+const Application = require('../models/Application');
 
-export async function createApplication(req, res) {
+async function createApplication(req, res) {
     try {
         const application = new Application(req.body);
         await application.save();
@@ -9,3 +9,7 @@ export async function createApplication(req, res) {
         res.status(400).send('Error saving application: ' + error.message);
     }
 }
+
+module.exports = {
+    createApplication,
+};
