@@ -1,26 +1,28 @@
 import connectDB from '../../../lib/models/db';
 import Goal from '../../../lib/models/Goal';
 
-export async function GET() {
-    await connectDB();
-
-    try {
-        const goals = await Goal.find();
-        return new Response(JSON.stringify(goals), { status: 200 });
-    } catch (error) {
-        return new Response(JSON.stringify({ error: 'Failed to fetch goals due to - ' + error.message }), { status: 500 });
-    }
-}
-
-export async function POST(req) {
-    await connectDB();
-    const data = await req.json();
-
-    try {
-        const newGoal = new Goal(data);
-        await newGoal.save();
-        return new Response(JSON.stringify(newGoal), { status: 201 });
-    } catch (error) {
-        return new Response(JSON.stringify({ error: 'Failed to save goal due to - ' + error.message}), { status: 400 });
+export default async function handler(req, res) {
+    switch (req.method) {
+        case 'GET':
+            try {
+                await connectDB();
+                const goals = await Goal.find();
+                res.status(200).json(goals);    
+            } catch (error) {
+                res.status(500).json({ error: 'Failed to fetch goals due to - ' + error.message });
+            }
+        case 'POST':
+            try {
+                await connectDB();
+                const data = await req.json();
+                const newGoal = new Goal(data);
+                await newGoal.save();
+                res.status(201).json({message: 'Goal created successfully', goal: newGoal});        
+            } catch (error) {
+                res.status(500).json({ error: 'Failed to fetch goals due to - ' + error.message });
+            }    
+        default:
+            res.status(405).json({ error: 'Method not allowed' });    
+            // return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
     }
 }
