@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@vercel/functions": "^1.5.0",
     "daisyui": "^4.12.14",
     "mongoose": "^8.8.1",
     "next": "15.0.3",
