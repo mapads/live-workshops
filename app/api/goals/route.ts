@@ -1,7 +1,7 @@
 import connectDB from '../../../lib/models/db';
 import Goal from '../../../lib/models/Goal';
 
-export async function GET(res: any) {
+export async function GET() {
     console.log("Handling GET request...");
     try {
         await connectDB();
@@ -14,7 +14,7 @@ export async function GET(res: any) {
     }
 }
 
-export async function POST(req:Request, res:any) {
+export async function POST(req:Request) {
     console.log("Handling POST request...");
     try {
         await connectDB();
