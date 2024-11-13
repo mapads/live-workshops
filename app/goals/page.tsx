@@ -10,7 +10,7 @@ interface Goal {
 
 export default function Goals() {
     const [goals, setGoals] = useState<Goal[]>([]);
-    const [isPaused, setIsPaused] = useState(false);
+    const [isPaused, setIsPaused] = useState(true);
     const [revealedGoals, setRevealedGoals] = useState<{ [key: string]: boolean }>({});
     // const PORT = process.env.PORT || 5002;
 
