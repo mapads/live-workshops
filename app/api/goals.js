@@ -1,5 +1,5 @@
-import connectDB from '../../../lib/models/db';
-import Goal from '../../../lib/models/Goal';
+import connectDB from '../../lib/models/db';
+import Goal from '../../lib/models/Goal';
 
 export default async function handler(req, res) {
     switch (req.method) {
