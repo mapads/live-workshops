@@ -10,8 +10,14 @@ export async function GET() {
     console.log("Handling GET request...");
     try {
         await connectDB();
-        const goals = await Goal.find();
-        console.log("Successfully fetched goals:", goals);
+        // Get the start of today's date in UTC
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Fetch goals created from the start of today
+        const goals = await Goal.find({ createdAt: { $gte: today } });
+        console.log("Successfully fetched goals from today:", goals);
+        
         return new Response(JSON.stringify(goals), { status: 200 });
     } catch (error) {
         const typedError = error as ErrorWithMessage;
